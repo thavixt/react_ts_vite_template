@@ -7,7 +7,7 @@ export function FormInput({ defaultValue, type = 'text', label, name, radioOptio
 }) {
   if (type === 'radio' && radioOptions) {
     return (
-      <div className="w-full grid grid-cols-[minmax(100px,_1fr)_minmax(100px,_2fr)] grid-rows-1 gap-2">
+      <div className="w-full grid grid-cols-[minmax(100px,1fr)_minmax(100px,2fr)] grid-rows-1 gap-2">
         <label htmlFor={name}>{label}:</label>
         <div className="flex flex-col px-1">
           {Object.entries(radioOptions).map(([key, value]) => (
@@ -23,7 +23,7 @@ export function FormInput({ defaultValue, type = 'text', label, name, radioOptio
 
   if (type === 'checkbox') {
     return (
-      <div className="w-full grid grid-cols-[minmax(100px,_1fr)_minmax(100px,_2fr)] grid-rows-1 gap-2">
+      <div className="w-full grid grid-cols-[minmax(100px,1fr)_minmax(100px,2fr)] grid-rows-1 gap-2">
         <label htmlFor={name}>{label}:</label>
         <div className="px-1">
           <input id={name} name={name} defaultChecked={defaultValue as boolean} type={type} />
