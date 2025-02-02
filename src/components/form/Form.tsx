@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState, useCallback } from "react";
+import { PropsWithChildren, useState } from "react";
 import { Loader } from "../Loader";
 import { BlockingOverlay } from "./BlockingOverlay";
 
@@ -16,16 +16,17 @@ export function Form<T extends FormValues>(
   const [formId] = useState(`form_${crypto.randomUUID()}`);
   const [blocking, setBlocking] = useState(false);
 
-  const onFormSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     setBlocking(true);
+  
     const formElement = document.forms.namedItem(formId)!;
     const formData = new FormData(formElement);
     const formValues = Object.fromEntries(formData.entries()) as T;
     await onSubmit(formValues);
+  
     setBlocking(false);
-  }, [formId, onSubmit])
+  }
 
   return (
     <div className="relative">

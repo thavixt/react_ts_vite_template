@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { Header } from "./components/Header";
 import useStore, { DEFAULT_AGE, DEFAULT_EMPLOYED, DEFAULT_GENDER, DEFAULT_NAME } from "./store/store";
 import { sleep } from "./logic/utils";
@@ -26,13 +25,13 @@ function App() {
   const setAge = useStore(state => state.setAge);
   const setEmployed = useStore(state => state.setEmployed);
 
-  const onSubmit = useCallback(async (formData: Person) => {
+  const onSubmit = async (formData: Person) => {
     setName(formData.name);
     setGender(formData.gender);
     setAge(formData.age);
     setEmployed(!!formData.employed);
     await sleep();
-  }, [setAge, setEmployed, setGender, setName]);
+  };
 
   return (
     <div className="flex flex-col space-y-8 items-center mx-auto">
